@@ -8,6 +8,7 @@ Created on Thu May  6 13:45:07 2021
 #This script will create bins for the years, decades, and counties for fires in CA
 
 import pandas as pd
+import matplotlib.pyplot as plt
 
 #open fires dataframe
 fires= pd.read_csv("fires.csv")

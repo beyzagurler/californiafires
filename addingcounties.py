@@ -9,6 +9,7 @@ Created on Thu May  6 12:30:55 2021
 #Cleaning up the data from Fire Perimeters and merging counties 
 
 import pandas as pd
+import geopandas
 
 #opening California Fire Perimeters as a dataframe
 
@@ -24,10 +25,20 @@ fires["CONT_DATE"]= fires["CONT_DATE"].str.rstrip(" 00:00:00+00")
 
 fires["ALARM_DATE"]= fires["ALARM_DATE"].str.rstrip(" 00:00:00+00")
 
+#saving the dataframe "fires" as a csv file for other scripts to use
+fires.to_csv("fires.csv")
+
+#dropping extra columns from County data
+counties=pd.read_csv("California_County_Boundaries.csv")
+
+counties= counties.drop(["OBJECTID", "COUNTY_ABBREV", "COUNTY_NUM","COUNTY_CODE", "ISLAND"],axis='columns')
 
 
 #adding counties 
 
+county=geopandas.read_file("zip://California_County_Boundaries.zip")
 
-#saving the dataframe "fires" as a csv file for other scripts to use
-fires.to_csv("fires.csv")
+fire_perimeters=geopandas.read_file("zip://California_Fire_Perimeters.zip")
+
+#.sjoin()
+
