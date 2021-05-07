@@ -31,14 +31,9 @@ fires.to_csv("fires.csv")
 #dropping extra columns from County data
 counties=pd.read_csv("California_County_Boundaries.csv")
 
-counties= counties.drop(["OBJECTID", "COUNTY_ABBREV", "COUNTY_NUM","COUNTY_CODE", "ISLAND"],axis='columns')
+counties= counties.drop(["OBJECTID", "COUNTY_ABBREV","GlobalID", "ISLAND"],axis='columns')
+
+counties.to_csv("counties.csv")
 
 
-#adding counties 
-
-county=geopandas.read_file("zip://California_County_Boundaries.zip")
-
-fire_perimeters=geopandas.read_file("zip://California_Fire_Perimeters.zip")
-
-#.sjoin()
 
