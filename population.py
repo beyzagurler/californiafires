@@ -34,3 +34,5 @@ population.to_csv("population.csv")
 #%%
 #merging population onto the fires_by_county dataframe
 
+
+join on fips codes 
