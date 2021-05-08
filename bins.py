@@ -9,19 +9,16 @@ Created on Thu May  6 13:45:07 2021
 
 import pandas as pd
 import matplotlib.pyplot as plt
+import geopandas
 
-#open fires dataframe
-fires= pd.read_csv("fires.csv")
+#opening fires_by_county 
+fires_by_county= pd.read_csv("fires_by_county.csv")
 
+#Creating a bin for each decade
 
-#breaking up the dates
+1900-2019
 
-pd.to_datetime(fires["ALARM_DATE"])
-print(fires["ALARM_DATE"])
-
-#fires["year"]= 
-
-#fires["month"]=
-
-#fires["day"]=
-
+1900-1910
+so we wanna do [1900:1910) and then [1910,1920)
+                                     
+                                     
