@@ -39,4 +39,6 @@ fires_by_county['COUNTY_FIP'] = fires_by_county['COUNTY_FIP'].str.zfill(1)
 
 fires_by_county.to_csv("fires_by_counties.csv")
 
-fires_by_county.to_pickle("fires_by_counties.pkl")
+#pickling some stuff
+
+#fires_by_county.to_pickle("fires_by_counties.pkl")

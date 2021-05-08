@@ -29,10 +29,10 @@ population=rename
 population.index=population["county"]
 population.to_csv("population.csv")
 
-#pop density= number of ppl/land area
 
 #%%
 #merging population onto the fires_by_county dataframe
 
 
-join on fips codes 
+
+#join on fips codes 
