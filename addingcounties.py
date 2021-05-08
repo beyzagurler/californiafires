@@ -35,4 +35,6 @@ fires_by_county=geopandas.read_file("firesbycounty.gpkg")
 #Drop all the columns that are not needed
 fires_by_county= fires_by_county.drop(["OBJECTID","OBJECTID_2","COUNTY_ABB", "COUNTY_NUM","COUNTY_COD","FIRE_NUM","OBJECTIVE","REPORT_AC","INC_NUM","C_METHOD","AGENCY","STATE","UNIT_ID","COMMENTS","GlobalID", "ISLAND"],axis=1)
 
+fires_by_county['COUNTY_FIP'] = fires_by_county['COUNTY_FIP'].str.zfill(1)
+
 fires_by_county.to_csv("fires_by_counties.csv")

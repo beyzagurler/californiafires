@@ -26,21 +26,26 @@ print("\nFire Count for each decade:","\n", sorted_decades)
 
 #fires_by_decade=fires_by_county["decade_bins"].groupby()
 
-decades= sns.jointplot(sorted_decades, y="Number of Fires", x='Years', kind='hex')
+#decades= sns.jointplot(sorted_decades, y="index", x='columns', kind='hex')
 
 #decades.savefig('fires_by_decade.png')
 
-
 #print(fires_by_county["decade_bins"])
 
-
 #print("\nFires per Year in California State:", len("YEAR_"))
-
-
-
-
-
-
+# MAYBE I DONT NEED THIS fires_per_year=fires_by_county.groupby("YEAR_", axis="index")
+# MAYBE I DONT NEED THIS print(fires_per_year)
 
                                      
 #make a histogram at the end of this                                     
+
+
+fig, ax1= plt.subplots(1)
+sorted_decades.hist()
+plt.ylabel('Amount of Fires')
+plt.xlabel("Decades")
+plt.title("Amount of Wildfires in California by Decade")
+
+
+#sorting by counties!
+

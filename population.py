@@ -31,4 +31,6 @@ population.to_csv("population.csv")
 
 #pop density= number of ppl/land area
 
-#line 27 might be wrong
+#%%
+#merging population onto the fires_by_county dataframe
+
