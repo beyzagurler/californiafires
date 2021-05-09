@@ -24,9 +24,9 @@ sorted_decades=pd.DataFrame(sorted_decades)
 
 #renaming the columns in sorted_decades
 
-better_names.set_index= DO I NEED TO HAVE THE INDEXES DIFFERENT FROM DECADES??
-
 better_names=sorted_decades.rename(columns={"decade_bins": "Number of Fires"})
+
+better_names=better_names.reset_index()
 
 sorted_by_decades= better_names 
 
@@ -48,10 +48,11 @@ fig.savefig("Wildfires_By_Decade.png")
 #%%
 
 fig, ax1= plt.subplots()
-sns.histplot(data=sorted_by_decades, x="Number of Fires", stat="density", ax=ax1)
-sns.kdeplot(data=sorted_by_decades, x="Number of Fires", shade=True, ax=ax1)
-ax1.set_xlabel("This is the X")
-fig.tight_layout()
-fig.savefig("histFires_by_decade.png", dpi=300)
+sns.barplot(x="index", y="Number of Fires", data=sorted_by_decades.reset_index(), ax=ax1)
+plt.ylabel('Acres Burned')
+plt.xlabel('Years')
+plt.xticks(rotation=25)
+plt.title('Acres Burned per Decade')
+fig.savefig('Acres over years.png', dpi=300)
 #%%
 
