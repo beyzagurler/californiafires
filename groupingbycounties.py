@@ -9,6 +9,7 @@ import pandas as pd
 
 #opening fire, county, and population data
 huge_fire_data= pd.read_csv("Fire_Data.csv")
+population=pd.read_csv("Population.csv")
 
 #fires in each county ever
 number_by_county = huge_fire_data.groupby("COUNTY").size()
@@ -18,6 +19,14 @@ number_by_county = huge_fire_data.groupby("COUNTY").size()
 number_by_county=pd.DataFrame(number_by_county)
 
 number_by_county['Fires']=number_by_county
+
+#number_by_county['COUNTY']=number_by_county
+
+number_by_county['COUNTY']=number_by_county['COUNTY'].astype(str)
+
+#fires_by_county['COUNTY_FIP'] = fires_by_county['COUNTY_FIP'].str.zfill(1)
+
+number_by_county=number_by_county.merge(population, right_on="COUNTY", left_index=True)
 
 #fires in each county each year
 total_acres = huge_fire_data.groupby(["COUNTY","YEAR_"])["GIS_ACRES"].sum()
@@ -40,3 +49,4 @@ top10fires=total_acres.sort_values("GIS_ACRES").iloc[-10:]
 
 top10counties=number_by_county.sort_values("Fires").iloc[-10:]
 
+#%%
