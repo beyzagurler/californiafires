@@ -9,7 +9,6 @@ Created on Thu May  6 13:45:07 2021
 
 import pandas as pd
 import matplotlib.pyplot as plt
-import geopandas
 import seaborn as sns
 
 #opening fires_by_county 
@@ -26,7 +25,7 @@ sorted_decades=pd.DataFrame(sorted_decades)
 #renaming the columns in sorted_decades
 better_names=sorted_decades.rename(columns={"decade_bins": "Number of Fires"})
 
-better_names.index=better_names["Decades"]
+#better_names.index=better_names["Decades"]
 
 sorted_by_decades= better_names 
 
@@ -47,14 +46,10 @@ fig.savefig("Wildfires_By_Decade.png")
 
 #%%
 
-fig, ax1= plt.subplots(dpi=300)
-sns.histplot(data=sorted_by_decades, x="Number of Fires", hue="", kde=True, ax=ax1)
-fig.tight_layout()
-fig.savefig('pleasework.png')
+#tips= sns.load_dataset("sorted_by_decades")
+#what=sns.histplot(data=tips, x="Index", y="Number of Fires",)
+#ax=sns.displot(sorted_by_decades, x="Number of Fires", kde=True)
+#plt.show()
 
 #%%
-#sorting by counties!
-
-sns.displot(sorted_by_decades, kde=True)
-plt.show()
 

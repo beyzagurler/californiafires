@@ -43,6 +43,4 @@ fires_by_county['COUNTY']=fires_by_county['COUNTY'].astype(str)
 
 fires_by_county.to_csv("fires_by_counties.csv")
 
-#pickling some stuff
 
-#fires_by_county.to_pickle("fires_by_counties.pkl")

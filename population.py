@@ -41,5 +41,6 @@ print( huge_fire_data['_merge'].value_counts() )
 #dropping extra columns
 huge_fire_data = huge_fire_data.drop(['_merge',"state","Unnamed: 0"], axis='columns')
 #%%
-#saving our mega data file to csv juuuust in case
+
+#saving the mega data file to csv 
 huge_fire_data.to_csv("Fire_Data.csv")
