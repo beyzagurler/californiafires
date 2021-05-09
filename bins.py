@@ -23,9 +23,10 @@ sorted_decades=fires_by_county["decade_bins"].value_counts().sort_index()
 sorted_decades=pd.DataFrame(sorted_decades)
 
 #renaming the columns in sorted_decades
-better_names=sorted_decades.rename(columns={"decade_bins": "Number of Fires"})
 
-#better_names.index=better_names["Decades"]
+better_names.set_index= DO I NEED TO HAVE THE INDEXES DIFFERENT FROM DECADES??
+
+better_names=sorted_decades.rename(columns={"decade_bins": "Number of Fires"})
 
 sorted_by_decades= better_names 
 
@@ -46,10 +47,11 @@ fig.savefig("Wildfires_By_Decade.png")
 
 #%%
 
-#tips= sns.load_dataset("sorted_by_decades")
-#what=sns.histplot(data=tips, x="Index", y="Number of Fires",)
-#ax=sns.displot(sorted_by_decades, x="Number of Fires", kde=True)
-#plt.show()
-
+fig, ax1= plt.subplots()
+sns.histplot(data=sorted_by_decades, x="Number of Fires", stat="density", ax=ax1)
+sns.kdeplot(data=sorted_by_decades, x="Number of Fires", shade=True, ax=ax1)
+ax1.set_xlabel("This is the X")
+fig.tight_layout()
+fig.savefig("histFires_by_decade.png", dpi=300)
 #%%
 

@@ -10,24 +10,33 @@ import pandas as pd
 #opening fire, county, and population data
 huge_fire_data= pd.read_csv("Fire_Data.csv")
 
-#please=huge_fire_data.groupby(["COUNTY"])
+#fires in each county ever
+number_by_county = huge_fire_data.groupby("COUNTY").size()
 
-#please["Num_fires"]=please.count()
 
-#groupby_county=pd.DataFrame(please)
+
+number_by_county=pd.DataFrame(number_by_county)
+
+number_by_county['Fires']=number_by_county
+
+#fires in each county each year
+total_acres = huge_fire_data.groupby(["COUNTY","YEAR_"])["GIS_ACRES"].sum()
+
+total_acres=pd.DataFrame(total_acres)
+
+#ammount of acres per county in all of time 
+county_tot_acres= total_acres.groupby("COUNTY").sum()
+ 
 
 #%%
-#for county in groupby_county:
- #   print(groupby_county.sum())
+#Trying to get some counties that had the most acres burned
 
-#huge_fire_data["county_bins"]= huge_fire_data.groupby("COUNTY", axis=0)
-
-#groupby_county=huge_fire_data["county_bins"].value_counts().sort_index()
-
-#groupby_county=pd.DataFrame(groupby_county)
-
-#LA_county= huge_fire_data.query(["COUNTY"])
+#total_acres and try to find the top ten counties with most fires and what years they were in 
 
 
-LA=huge_fire_data.query("COUNTY=='001'")
-print(LA)
+#%%
+
+top10fires=total_acres.sort_values("GIS_ACRES").iloc[-10:]
+
+top10counties=number_by_county.sort_values("Fires").iloc[-10:]
+
