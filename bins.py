@@ -24,27 +24,37 @@ sorted_decades=fires_by_county["decade_bins"].value_counts().sort_index()
 sorted_decades=pd.DataFrame(sorted_decades)
 
 #renaming the columns in sorted_decades
-better_names=sorted_decades.rename(index={"index":"Decades"},columns={"decade_bins": "Number of Fires"})
+better_names=sorted_decades.rename(columns={"decade_bins": "Number of Fires"})
 
+better_names.index=better_names["Decades"]
 
 sorted_by_decades= better_names 
 
 
 print("\nFire Count for each decade:","\n", sorted_by_decades)
 
-
-#decades= sns.jointplot(sorted_decades, y="index", x='columns', kind='hex')
-
-                                     
-#make a histogram at the end of this                                     
+#sorted_by_decades= sns.jointplot(sorted_decades, y="Index", x='Number of Fires', kind='hex')
+                                                                       
 #%%
-fig, ax1 = plt.subplots()
-sorted_by_decades.plot()
+#little figure!
+(fig, ax1) = plt.subplots(dpi=300)
+fig.suptitle("Amount of Wildfires in California by Decade")
+sorted_by_decades.plot(ax=ax1)
 ax1.set_ylabel("Number of Fires")
 ax1.set_xlabel("Decades")
-plt.title("Amount of Wildfires in California by Decade")
-fig.savefig("Wildfires_By_Decade.png", dpi=300)
+fig.tight_layout()
+fig.savefig("Wildfires_By_Decade.png")
+
+#%%
+
+fig, ax1= plt.subplots(dpi=300)
+sns.histplot(data=sorted_by_decades, x="Number of Fires", hue="", kde=True, ax=ax1)
+fig.tight_layout()
+fig.savefig('pleasework.png')
 
 #%%
 #sorting by counties!
+
+sns.displot(sorted_by_decades, kde=True)
+plt.show()
 

@@ -24,15 +24,22 @@ colnames= row_list[0]
 datarows= row_list[1:]
 
 population= pd.DataFrame(columns= colnames, data=datarows)
-rename= population.rename(columns={"B01001_001E": "Population", "county": "County"})
+rename= population.rename(columns={"B01001_001E": "Population", "county": "COUNTY"})
 population=rename
-population.index=population["county"]
+population['COUNTY']=population['COUNTY'].astype(str)
 population.to_csv("population.csv")
 
 
 #%%
-#merging population onto the fires_by_county dataframe
+#merging population onto the fires_by_county dataframe but first, lets open our friend fire_by_county
+fires_by_county= pd.read_csv("fires_by_counties.csv")
 
+huge_fire_data=fires_by_county.merge(population, on='COUNTY', how='left', validate='m:1', indicator=True)
 
+print( huge_fire_data['_merge'].value_counts() )
 
-#join on fips codes 
+#dropping extra columns
+huge_fire_data = huge_fire_data.drop(['_merge',"state","Unnamed: 0"], axis='columns')
+#%%
+#saving our mega data file to csv juuuust in case
+huge_fire_data.to_csv("Fire_Data.csv")

@@ -37,6 +37,10 @@ fires_by_county= fires_by_county.drop(["OBJECTID","OBJECTID_2","COUNTY_ABB", "CO
 
 fires_by_county['COUNTY_FIP'] = fires_by_county['COUNTY_FIP'].str.zfill(1)
 
+fires_by_county=fires_by_county.rename(columns={"COUNTY_FIP":"COUNTY"})
+
+fires_by_county['COUNTY']=fires_by_county['COUNTY'].astype(str)
+
 fires_by_county.to_csv("fires_by_counties.csv")
 
 #pickling some stuff
