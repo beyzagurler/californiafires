@@ -6,7 +6,7 @@ Created on Sun May  9 00:05:31 2021
 @author: beyzagurler
 """
 import pandas as pd
-import matplotlib as plt
+import matplotlib.pyplot as plt
 import seaborn as sns
 
 #opening fire, county, and population data
@@ -48,6 +48,7 @@ county_tot_acres= total_acres.groupby("COUNTY").sum()
 
 #MEASURE OF FIRES BY LAND AREAS maP OF CALI TAKE ALAND VARIABLE SQ METERS  TAKE NUMBER OF FIRES/SQMETERS gives you number of fires per square meters multiple by 1MILLION Number of fires by 1m sq meters
 #POP DENSITY AND FIRE DENSITY = SCATTER THAT 
+
 #%%
 heatmap_data=number_by_county[['COUNTY', "Fires"]]
 
@@ -72,7 +73,7 @@ fig, ax1= plt.subplots()
 sns.barplot(x="YEAR_", y="GIS_ACRES", data=top15fires.reset_index(), ax=ax1)
 plt.ylabel('Acres Burned')
 plt.xlabel('Years')
-plt.title('Worst Fires by year')
+plt.title('Worst Fires')
 fig.savefig('WORST.png', dpi=300)
 
 
@@ -84,7 +85,7 @@ plt.ylabel('Acres Burned')
 plt.xlabel('Years')
 plt.xticks(rotation=25)
 plt.title('Acres Burned per Year')
-fig.savefig('Acres over years.png', dpi=300)
+fig.savefig('Acres_over_years.png', dpi=300)
 
 #%%
 fig, ax1= plt.subplots(dpi=300)
@@ -104,10 +105,19 @@ fires_by_county=pd.read_csv("fires_by_counties.csv")
 
 last20years=huge_fire_data.sort_values("YEAR_").round(-1)
 print(last20years)
+
+fig, ax1= plt.subplots()
+sns.barplot(x="YEAR_", y="GIS_ACRES", data=last20years.reset_index(), ax=ax1)
+plt.ylabel('Acres Burned')
+plt.xlabel('Years')
+plt.xticks(rotation=25)
+plt.title('Acres Burned per Year')
+fig.savefig('Acres over years.png', dpi=300)
+
 #number_by_county = huge_fire_data.groupby("COUNTY").size()
 
 #%%
 
 fires_pop=sns.scatterplot(data = number_by_county , x = "Fires", y = "Population")
 fires_pop.set_title("Amount of Historical Fires per population in counties")
-fires_pop.savefig("population_counties.png",dpi=300)
+fires_pop.savefig("population_counties.png")
