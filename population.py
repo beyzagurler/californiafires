@@ -5,8 +5,8 @@ Created on Thu May  6 13:45:31 2021
 
 @author: beyzagurler
 """
-
-#trying to overlay the population density on top of all this good stuff!!! probs should be run second
+#Run me second!
+#obtaining population data
 import pandas as pd
 import requests 
 

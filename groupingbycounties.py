@@ -5,9 +5,13 @@ Created on Sun May  9 00:05:31 2021
 
 @author: beyzagurler
 """
+
+#Run me last!
+
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import numpy as np
 
 #opening fire, county, and population data
 huge_fire_data= pd.read_csv("Fire_Data.csv")
@@ -16,9 +20,9 @@ population=pd.read_csv("Population.csv", dtype={"COUNTY": str})
 #fires in each county ever
 number_by_county = huge_fire_data.groupby("COUNTY").size()
 
-#check why some didn't have counties, islands??-
 
 number_by_county.name="Fires"
+
 number_by_county=number_by_county.to_frame()
 
 number_by_county=number_by_county.reset_index()
@@ -30,13 +34,13 @@ total_acres = huge_fire_data.groupby(["COUNTY","YEAR_"])["GIS_ACRES"].sum()
 
 total_acres=pd.DataFrame(total_acres)
 
-#do acres TOTAL burned per year
+#acres TOTAL burned per year
 acres_burned_yearly=huge_fire_data.groupby("YEAR_")["GIS_ACRES"].sum()
 
 #ammount of acres per county in all of time 
 county_tot_acres= total_acres.groupby("COUNTY").sum()
 
-
+number_by_county= number_by_county.drop(["Unnamed: 0", "_merge", "state"], axis=1)
  
 #heat map of fires to see if some counties have more fires than others, HISTOGRAM OR MAP
 #heat map heat map! counties with a lot of fires might be the big counties 
@@ -62,9 +66,9 @@ fig.tight_layout()
 #%%
 
 top15fires=total_acres.sort_values("GIS_ACRES").iloc[-15:]
-print(top15fires)
+print("\nTop 15 fires in California:","\n",top15fires)
 top10counties=number_by_county.sort_values("Fires").iloc[-10:]
-print(top10counties)
+print("\nTop 10 counties with the most amount of fires:","\n" ,top10counties)
 
 #%%
 #GRAPH THE WORST FIRE BY ACRE AND SEE WHEN IT WAS COMPARED TO THE OTHER ONES
@@ -74,7 +78,7 @@ sns.barplot(x="YEAR_", y="GIS_ACRES", data=top15fires.reset_index(), ax=ax1)
 plt.ylabel('Acres Burned')
 plt.xlabel('Years')
 plt.title('Worst Fires')
-fig.savefig('WORST.png', dpi=300)
+fig.savefig('WORST.png', dpi=500)
 
 
 #%%
@@ -121,3 +125,6 @@ fig.savefig('Acres over years.png', dpi=300)
 fires_pop=sns.scatterplot(data = number_by_county , x = "Fires", y = "Population")
 fires_pop.set_title("Amount of Historical Fires per population in counties")
 fires_pop.savefig("population_counties.png")
+
+#%%
+sns.heatmap()

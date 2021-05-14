@@ -5,7 +5,8 @@ Created on Thu May  6 13:45:07 2021
 
 @author: beyzagurler
 """
-#This script will create bins for the years, decades, and counties for fires in CA
+#Run me third!
+#This script will create bins for the decades for fires in CA
 
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -33,26 +34,14 @@ sorted_by_decades= better_names
 
 print("\nFire Count for each decade:","\n", sorted_by_decades)
 
-#sorted_by_decades= sns.jointplot(sorted_decades, y="Index", x='Number of Fires', kind='hex')
-                                                                       
-#%%
-#little figure!
-(fig, ax1) = plt.subplots(dpi=300)
-fig.suptitle("Amount of Wildfires in California by Decade")
-sorted_by_decades.plot(ax=ax1)
-ax1.set_ylabel("Number of Fires")
-ax1.set_xlabel("Decades")
-fig.tight_layout()
-fig.savefig("Wildfires_By_Decade.png")
 
 #%%
 
 fig, ax1= plt.subplots()
 sns.barplot(x="index", y="Number of Fires", data=sorted_by_decades.reset_index(), ax=ax1)
-plt.ylabel('Acres Burned')
-plt.xlabel('Years')
+plt.ylabel('Number of Fires')
+plt.xlabel('Decades')
 plt.xticks(rotation=25)
-plt.title('Acres Burned per Decade')
-fig.savefig('Acres over years.png', dpi=300)
-#%%
+plt.title('Fires per Decade')
+fig.savefig('Fires_over_decades.png', dpi=300)
 
