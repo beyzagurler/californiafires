@@ -81,5 +81,3 @@ fires_pop=sns.scatterplot(data = number_by_county , x = "Fires", y = "Population
 fires_pop.set_title("Amount of Historical Fires by population in counties")
 plt.savefig("population_counties.png")
 
-#%%
-
