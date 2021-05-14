@@ -19,11 +19,11 @@ Scripts should be run in this order:
 3) bins.py
 4) groupingbycounties.py
 
-The addingcounties.py script cleans up some of the data from the California Fire Perimeters dataset. The county dataset and the fire perimeter dataset is joined via a spatial join on QGIS (called join.qgz) and this script opens up the geopackage and saves it as a csv for use in the upcoming scripts.
+The addingcounties.py script cleans up some of the data from the California Fire Perimeters dataset. The county dataset and the fire perimeter dataset is joined via a spatial join on QGIS (called join.qgz) and this script opens up the geopackage and saves it as a csv for use in the upcoming scripts. This script creates a csv file called fires.csv that has the dates from the original data stripped of its time stamps as well as fires_by_county.csv which has the county information and the correct county fips codes.
 
-The population.py script obtains the population data for each county in California from the 2018 Census. It merges the population data onto our larger dataframe called fires_by_county which includes the county and fire perimeters.
+The population.py script obtains the population data for each county in California from the 2018 Census. It saves the population data as Population.csv. It merges this data onto our larger dataframe called fires_by_county which includes the county and fire perimeters.
 
-The bins.py scrip starts the analysis. It groups the fires by decades and gives an output of all the fires in California for each decade. It also creates a barplot of the amount of fires by decade.
+The bins.py script starts the analysis. It groups the fires by decades and gives an output of all the fires in California for each decade. It also creates a barplot of the amount of fires by decade.
 
 The groupingbycounties.py script continues the analysis. It gives a list of the top 15 fires in California by the amount of acres burned as well as the top 10 counties with the amount amount of fires. These show that the counties with higher populations tend to have higher amounts of fires (with the exception of Siskiyou County ("093") and Tulare County ("107")). The top 15 fires in California are almost all completely in the more recent years (2002-2018) with the exception of one fire in 1987 in Siskiyou County. The top 15 fires were determined by the amount of acres that were burned in a single incident. This script creates a few plots. The first one is called Worst_fires.png and is a visualization of the top 15 fires. The graph "acres_over_years.png" shows the amount of acres burned for each year and it can be seen that it has been growing exponentially for more recent years.
 

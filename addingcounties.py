@@ -44,6 +44,6 @@ fires_by_county=fires_by_county.rename(columns={"COUNTY_FIP":"COUNTY"})
 #changing the fips codes into strings
 fires_by_county['COUNTY']=fires_by_county['COUNTY'].astype(str)
 
-fires_by_county.to_csv("fires_by_counties.csv")
+fires_by_county.to_csv("fires_by_county.csv")
 
 

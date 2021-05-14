@@ -11,7 +11,6 @@ Created on Sun May  9 00:05:31 2021
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-import numpy as np
 
 #opening fire, county, and population data
 huge_fire_data= pd.read_csv("Fire_Data.csv")
